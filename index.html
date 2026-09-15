@@ -16,6 +16,15 @@
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="./assets/mark.svg" type="image/svg+xml">
   <link rel="stylesheet" href="./style.css">
+  <noscript><style>
+    /* Fallback de navegación sin JavaScript: el menú móvil queda visible y accesible */
+    @media (max-width:700px){
+      .menu-toggle{display:none!important}
+      .main-nav{display:flex!important;position:static;flex-direction:column;align-items:stretch;background:var(--ink);padding:18px var(--pad) 24px;border-top:1px solid #394b49}
+      .main-nav a{padding:11px 0!important}
+      .main-nav .nav-cta{text-align:center;margin-top:6px}
+    }
+  </style></noscript>
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",

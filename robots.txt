@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://tuwebentresdias.github.io/demo-electricista-premium/sitemap.xml
