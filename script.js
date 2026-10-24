@@ -1,7 +1,7 @@
 (() => {
   'use strict';
 
-  const localParams = new URLSearchParams(window.location.search);
+  const localParams = new URLSearchParams(window.__DEMO_PARAMS__ ?? window.location.search);
   let params = localParams;
   if (!localParams.toString()) {
     try {
@@ -9,13 +9,14 @@
     } catch (error) { /* Cross-origin parent: keep local defaults. */ }
   }
 
-  const rawCompany = params.get('e');
-  const rawName = params.get('n');
+  const rawCompany = params.get('e')?.trim().slice(0, 80);
+  const rawName = params.get('n')?.trim().slice(0, 80);
   const safeName = (rawCompany || rawName || '').trim().slice(0, 80);
   const identity = safeName || 'Electricista';
   const rawPhone = params.get('t');
-  const cleanPhone = (rawPhone || '1158055802').replace(/[\s\-()]/g, '');
-  const whatsappPhone = `549${cleanPhone}`;
+  const contactPhone = window.SiteSecurity.normalizePhone(rawPhone ?? '1158055802');
+  const cleanPhone = contactPhone?.national || '';
+  const whatsappPhone = contactPhone?.whatsapp || '';
   const displayPhone = cleanPhone.replace(/(\d{2})(\d{4})(\d{4})/, '$1 $2-$3');
 
   const messages = {
